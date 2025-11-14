@@ -1,0 +1,273 @@
+:root {
+  --bg: #f6f8fb;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --accent: #5b8cff;
+  --accent-2: #7c3aed;
+  --ok: #10b981;
+  --danger: #ef4444;
+  --radius: 12px;
+  --shadow: 0 8px 28px rgba(16, 24, 40, 0.06);
+  --success-grad: linear-gradient(90deg, var(--accent), var(--accent-2));
+  font-family: Inter, system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0
+}
+
+body {
+  background: linear-gradient(180deg, var(--bg), #eef2f8);
+  padding: 20px;
+  color: #0f1724;
+}
+
+.app {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 20px;
+}
+
+/* HEADER */
+header {
+  grid-column: 1/-1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.brand {
+  display: flex;
+  gap: 12px;
+  align-items: center
+}
+
+.logo {
+  width: 46px;
+  height: 46px;
+  border-radius: 10px;
+  background: var(--success-grad);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: 800;
+  box-shadow: 0 8px 20px rgba(124, 58, 237, 0.12);
+}
+
+h1 {
+  font-size: 18px
+}
+
+.lead {
+  color: var(--muted);
+  font-size: 13px
+}
+
+/* SIDEBAR */
+.sidebar {
+  background: var(--card);
+  padding: 16px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.habit-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 60vh;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+.habit-item {
+  background: rgba(0, 0, 0, 0.03);
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.15s;
+}
+
+.habit-item:hover {
+  transform: translateY(-3px)
+}
+
+.habit-name {
+  font-weight: 700
+}
+
+.habit-meta {
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--muted)
+}
+
+input,
+select {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+/* BUTTONS */
+.btn {
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn {
+  background: var(--accent);
+  color: white
+}
+
+.btn.ghost {
+  background: transparent;
+  border: 1px solid #cbd5e1;
+  color: var(--accent)
+}
+
+.btn.warn {
+  background: linear-gradient(90deg, #ff7b7b, #ff4d4d)
+}
+
+/* MAIN CARD */
+.card {
+  background: var(--card);
+  padding: 18px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* CALENDAR */
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  margin-top: 6px
+}
+
+.weekday {
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted)
+}
+
+.day {
+  min-height: 78px;
+  padding: 8px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: 0.15s;
+}
+
+.day .date {
+  font-weight: 700;
+  margin-bottom: 6px
+}
+
+.day.completed {
+  background: rgba(92, 144, 255, 0.20);
+  border: 1px solid rgba(79, 115, 255, 0.3);
+}
+
+.day.streak {
+  box-shadow: 0 6px 16px rgba(79, 115, 255, 0.25);
+  border: 1px solid rgba(79, 115, 255, 0.4);
+}
+
+.day.disabled {
+  opacity: 0.25;
+  pointer-events: none
+}
+
+/* STATS */
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 6px
+}
+
+.stat {
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+  min-width: 120px;
+  box-shadow: 0 6px 16px rgba(16, 24, 40, 0.05);
+}
+
+.stat p {
+  margin-top: 6px;
+  font-weight: 700
+}
+
+/* SPARK */
+.spark {
+  width: 100%;
+  height: 34px
+}
+
+/* ✅ RESPONSIVE FIXES */
+@media(max-width:940px) {
+  .app {
+    grid-template-columns: 1fr
+  }
+
+  .sidebar {
+    order: 2
+  }
+
+  .main {
+    order: 1
+  }
+}
+
+@media(max-width:600px) {
+  header {
+    flex-direction: column;
+    text-align: center
+  }
+
+  .month-controls {
+    flex-wrap: wrap;
+    justify-content: center
+  }
+
+  .calendar {
+    grid-template-columns: repeat(7, 1fr)
+  }
+}
+
+/* PRINT */
+@media print {
+
+  header,
+  .sidebar,
+  .btn,
+  .controls {
+    display: none
+  }
+
+  .card {
+    box-shadow: none;
+    border-radius: 0
+  }
+}

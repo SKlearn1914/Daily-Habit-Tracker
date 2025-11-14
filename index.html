@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Daily Habit Tracker</title>
+  <meta name="description" content="Advanced Daily Habit Tracker with calendar UI, streaks, and analytics." />
+</head>
+<link rel="stylesheet" href="style.css">
+
+<body>
+  <div class="app">
+    <header>
+      <div class="brand">
+        <div class="logo">HT</div>
+        <div>
+          <h1>Daily Habit Tracker</h1>
+          <p class="lead">Track habits, build streaks, and stay consistent.</p>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center">
+        <button id="exportBtn" class="btn ghost">Export</button>
+        <button id="importBtn" class="btn ghost">Import</button>
+        <input id="importFile" type="file" accept="application/json" style="display:none" />
+        <button id="clearBtn" class="btn">Clear All</button>
+      </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar card" aria-label="Habit list">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <strong>Habits</strong>
+        <div class="muted" id="habitCount">0</div>
+      </div>
+
+      <div class="habit-list" id="habitList" tabindex="0"></div>
+
+      <form id="addForm" class="add-form" onsubmit="return false;">
+        <input id="newHabitName" type="text" placeholder="New habit (e.g. Drink Water)" aria-label="New habit"
+          required />
+        <button id="addHabitBtn" class="btn">Add</button>
+      </form>
+
+      <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+        <button id="todayMark" class="btn ghost">Mark Today</button>
+        <button id="clearMonth" class="btn ghost">Clear Month</button>
+      </div>
+
+      <div style="margin-top:12px;font-size:13px;color:var(--muted)">
+        Tip: click a day in the calendar to toggle completion. Streaks show consecutive completions.
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+      <div class="card">
+        <div class="main-header">
+          <div>
+            <div style="display:flex;gap:12px;align-items:center">
+              <div style="font-weight:800" id="selectedHabitName">Select a habit</div>
+              <div class="muted" id="selectedMeta">—</div>
+            </div>
+            <div class="muted" id="monthLabel">—</div>
+          </div>
+
+          <div class="month-controls">
+            <button id="prevMonth" class="btn ghost">◀</button>
+            <button id="nextMonth" class="btn ghost">▶</button>
+            <select id="yearPicker" class="btn ghost" aria-label="Pick year"></select>
+            <select id="monthPicker" class="btn ghost" aria-label="Pick month"></select>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 320px;gap:14px;align-items:start">
+          <div>
+            <div class="calendar" id="calendar">
+              <!-- weekdays -->
+            </div>
+          </div>
+
+          <div>
+            <div class="stats">
+              <div class="stat">
+                <h4>Month Completion</h4>
+                <p id="monthPct">—%</p>
+              </div>
+              <div class="stat">
+                <h4>Current Streak</h4>
+                <p id="currentStreak">0</p>
+              </div>
+              <div class="stat">
+                <h4>Best Streak</h4>
+                <p id="bestStreak">0</p>
+              </div>
+              <div class="stat" style="min-width:100%;">
+                <h4>Total Completions</h4>
+                <p id="totalCompletions">0</p>
+              </div>
+            </div>
+
+            <div style="margin-top:12px" aria-hidden>
+              <canvas id="spark" class="spark"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="js.js"></script>
+</body>
+
+</html>
